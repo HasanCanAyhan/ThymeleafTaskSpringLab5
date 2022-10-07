@@ -1,2 +1,4 @@
 /spring-labs-master/spring-05-thymeleaf/spring-05-thymeleaf.iml
 /.idea/
+target
+test
