@@ -13,7 +13,7 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-md-6">
-            <h2 >No Added Product Yet!</h2>  <!-- todo check cart item list equals not zero, otherwise it always print No product yet-->
+            <h2 th:if="${cartItemList.size() == 0}">No Added Product Yet!</h2>  <!-- todo check cart item list equals not zero, otherwise it always print No product yet-->
             <h3> Cart Total Amount</h3>
             <td th:text="${cartTotalAmount}"></td>  <!-- todo put cart total amount cart.getCartTotalAmount()-->
 

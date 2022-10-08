@@ -14,6 +14,13 @@ import java.util.UUID;
 @Service
 public class CartServiceImpl implements CartService {
     public static Cart CART = new Cart(BigDecimal.ZERO,new ArrayList<>());
+    /*
+    Also if you do something static,
+    it means it will be created right away when the application starts.
+    CART is something we want it to be there when the application starts,
+    and also since we will be using the same CART object in everywhere in our code,
+    we can make it static
+     */
 
     private final ProductService productService;
 
@@ -38,6 +45,7 @@ public class CartServiceImpl implements CartService {
 
         CART.getCartItemList().add(cartItem);
         CART.setCartTotalAmount(CART.getCartTotalAmount().add(cartItem.getTotalAmount()));
+        //                        last cart amount
 
         //todo add to cart
         return CART;
@@ -52,10 +60,9 @@ public class CartServiceImpl implements CartService {
         CartItem removing_cartItem = CART.getCartItemList().stream().filter(cartItem -> cartItem.getProduct().equals(deletingProduct))
                 .findFirst().orElseThrow();
 
-        CART.getCartItemList().remove(removing_cartItem);
         CART.setCartTotalAmount(CART.getCartTotalAmount().subtract(removing_cartItem.getTotalAmount()));
 
 
-        return true;
+        return CART.getCartItemList().remove(removing_cartItem);
     }
 }

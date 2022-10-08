@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ProductController {
 
     private final ProductService productService;
-    private final ProductRepository productRepository;
 
-    public ProductController(ProductService productService, ProductRepository productRepository) {
+
+    public ProductController(ProductService productService) {
         this.productService = productService;
-        this.productRepository = productRepository;
+
     }
 
 
@@ -45,7 +45,7 @@ public class ProductController {
     public String addProduct(@ModelAttribute("product") Product product){
 
         productService.productCreate(product);
-        productRepository.save(product);
+
 
         return "redirect:/list";
     }
